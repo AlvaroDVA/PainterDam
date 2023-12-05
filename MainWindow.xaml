@@ -1,0 +1,76 @@
+﻿<Window x:Class="PainterDam.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PainterDam"
+        mc:Ignorable="d"
+        Closing="MainWindow_Closing"
+        Title="Nuevo" Height="450" Width="800">
+
+    <Window.Resources>
+        <Storyboard x:Key="HideWrapPanel">
+            <DoubleAnimation Storyboard.TargetName="wrapPanel" 
+                         Storyboard.TargetProperty="Height" 
+                         To="0" Duration="0:0:0.5" />
+        </Storyboard>
+
+        <Storyboard x:Key="ShowWrapPanel">
+            <DoubleAnimation Storyboard.TargetName="wrapPanel" 
+                         Storyboard.TargetProperty="Height" 
+                         To="19" Duration="0:0:0.5" />
+        </Storyboard>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        
+
+        <Menu x:Name="menu">
+            <MenuItem Header="_Archivo" Name="ArchivoMenu">
+                <MenuItem Header="Abrir" Name="AbrirMenu" Click="AbrirImagen_Click"/>
+                <MenuItem Header="Guardar" Name="GuardarMenu" Click="GuardarImagen_Click"/>
+                <Separator />
+                <MenuItem Header="Limpiar" Name="LimpiarMenu" Click="LimpiarMenu_Click"/>
+                <MenuItem Header="Salir"  Name="SalirMenu" Click="SalirMenu_Click"/>
+            </MenuItem>
+            <MenuItem Header="_Editar">
+                <MenuItem Header="Rehacer" Name="RehacerMenu" Click="RehacerMenu_Click" InputGestureText="Ctrl+Y"/>
+                <MenuItem Header="Deshacer" Name ="DeshacerMenu" Click="DeshacerMenu_Click" InputGestureText="Ctrl+Z"/>
+                <Separator/>
+                <MenuItem Header="Cortar" Name="CortarMenu" Command="ApplicationCommands.Cut"/>
+                <MenuItem Header="Copiar" Name="CopiarMenu" Command="ApplicationCommands.Copy"/>
+                <MenuItem Header="Pegar" Name="PegarMenu" Command="ApplicationCommands.Paste"/>
+            </MenuItem>
+            <MenuItem Header="_Seleccionar">
+                <MenuItem Header="Colores" Name="ColoresMenu" IsCheckable="True" Click="ColoresMenu_Click"></MenuItem>
+                <Separator/>
+                <MenuItem Header="Trazo" Name="TrazoMenu" Click="CambiarModoPintar_Click" IsEnabled="False"></MenuItem>
+                <MenuItem Header="Seleccion" Name="SeleccionMenu" Click="CambiarModoSeleccion_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+
+
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Name="scrollViewer">
+            <InkCanvas Name="PanelDibujo"/>
+        </ScrollViewer>
+
+        <WrapPanel Grid.Row="2" Orientation="Horizontal" Background="WhiteSmoke" RenderTransformOrigin="0.199,0.405" Height="19" VerticalAlignment="Top" x:Name="wrapPanel">
+            <Ellipse Width="15" Height="15" Fill="Orange" Name= "OrangeChangeColor" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Margin="2" Focusable="True" Stroke="Black"/>
+            <Ellipse Width="15" Height="15" Fill="Red" Name= "RedChangeColor" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Margin="2" Focusable="True" Stroke="Black"/>
+            <Ellipse Width="15" Height="15" Fill="Green" Name= "GreenChangeColor" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Margin="2" Focusable="True" Stroke="Black"/>
+            <Ellipse Width="15" Height="15" Fill="Purple" Name= "PurpleChangeColor" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Margin="2" Focusable="True" Stroke="Black"/>
+            <Ellipse Width="15" Height="15" Fill="Blue" Name= "BlueChangeColor" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Margin="2" Focusable="True" Stroke="Black"/>
+            <Ellipse Width="15" Height="15" Fill="Pink" Name= "PinkChangeColor" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Margin="2" Focusable="True" Stroke="Black"/>
+            <Ellipse Width="15" Height="15" Fill="White" Name= "WhiteChangeColor" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Margin="2" Focusable="True" Stroke="Black"/>
+            <Ellipse Width="15" Height="15" Fill="Black" Name= "BlackChangeColor" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" Margin="2" Focusable="True" Stroke="Black"/>
+
+        </WrapPanel>
+
+    </Grid>
+</Window>
